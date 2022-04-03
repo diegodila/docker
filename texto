@@ -1,0 +1,462 @@
+docker exec -it gestaocontratos_worker_1 bash
+
+ . ./entrypoint.sh
+
+docker-compose down
+
+docker-compose up
+
+docker exec -it ondemand_template-worker_1 bash
+
+docker exec -it gestaocontratos_worker_1 bash
+
+docker restart memcached	
+
+
+docker history 
+
+ 1  ls dados/
+    2  cd dados/raw/
+    3  ls
+    4  cat contratos/contratos.csv 
+    5  cd ..
+    6  cd .
+    7  cd ..
+    8  . ./entrypoint.sh 
+    9  airflow version
+   10  airflow test GCO-dummy Raw_to_Ingested_Contratos 2020-01-01
+   11  echo $ENVIRONMENT 
+   12  . ./entrypoint.sh 
+   13  vim entrypoint.sh /
+   14  nano entrypoint.sh 
+   15  cat entrypoint.sh 
+   16  export MEMCACHED=False
+   17  . ./entrypoint.sh 
+   18  airflow version
+   19  airflow test GCO-dummy Raw_to_Ingested_Contratos 2020-01-01
+   20  export MEMCACHE_HOST=memcached
+   21  export MEMCACHE_PORT=11211
+   22  airflow test GCO-dummy Raw_to_Ingested_Contratos 2020-01-01
+   23  ping google.com
+   24  ls 
+   25  history 
+   28  airflow test GCO-dummy Raw_to_Ingested_Contratos 2020-01-01
+   29  docker ps
+   30  exit
+   31  ls -ltr
+   32  history 
+   33  . ./entrypoint.sh 
+   34  echo $ENVIRONMENT 
+   35  vim entrypoint.sh 
+   36  vim entrypoint.sh /
+   37  cat entrypoint.sh 
+   38  history 
+   39  nano entrypoint.sh 
+   40  exit
+   41  ls
+   42  ls -la
+   43  history 
+   44  export MEMCACHE_HOST=memcached
+   45  export MEMCACHE_PORT=11211
+   46  airflow test GCO-dummy Raw_to_Ingested_Contratos 2020-01-01
+   47  exit
+   48  history
+
+
+04
+
+
+
+1  sudo apt update 
+    2  sudo apt upgrade
+    3  sudo apt-get update 
+    4  sudo apt-get upgrade
+    5  sudo apt-get install git 
+    6  docker  ps -a 
+    7  docker ps 
+    8  sudo apt-get install git 
+    9  git 
+   10  sudo apt update 
+   11  sudo apt install postgresql postgresql-contrib
+   12  sudo -u postgres psql -c "SELECT version();"
+   13  sudo su - postgres
+   14  docker 
+   15  docker-compose 
+   16  sudo apt-get install docker-compose 
+   17  sudo apt-get install vscode
+   18  sudo apt-get install vs-code
+   19  clear 
+   20  docker-ce 
+   21  docker 
+   22  docker ps -a 
+   23  docker-compose up -d
+   24  docker ps
+   25  cd dags
+   26  git submodule update --init
+   27  docker network ls
+   28  cd ../docker/ondemand/
+   29  docker-compose up -d
+   30  git clone https://github.com/raizen-analytics-ldt/gestao-contratos
+   31  cd gestao-contratos/
+   32  git checkout dev
+   33  ls
+   34  cd docker/ondemand/
+   35  ls
+   36  cd ../..
+   37  docker images
+   38  git clone https://github.com/raizen-analytics-ldt/airzflow
+   39  cd ..
+   40  git clone https://github.com/raizen-analytics-ldt/airzflow
+   41  cd airzflow/
+   42  docker build -t airzflow .
+   43  docker ps --all
+   44  docker-compose exec -it template-worker bash
+   45  docker-compose exec template-worker bash
+   46  cd docker/ondemand/
+   47  docker-compose exec template-worker bash
+   48  cd ..
+   49  docker-compose exec worker bash
+   50  cd docker/ondemand/
+   51  docker-compose down
+   52  docker-compose up -d
+   53  docker-compose exec template-worker bash
+   54  cd ..
+   55  ls
+   56  chmod a+rw -R  dados
+   57  sudo chmod a+rw -R  dados
+   58  cd docker/ondemand/
+   59  docker-compose exec template-worker bash
+   60  cd ..
+   61  ls
+   62  ls -lah
+   63  cd dados/
+   64  ls
+   65  sudo chmod ag+rwx -R  dados
+   66  ls -lah
+   67  sudo chmod 0777 -R  dados
+   68  ls -lah
+   69  cd dados
+   70  sudo chown -R diego:diego dados/
+   71  sudo chmod 0777 -R  dados
+   72  sudo chmod 0777 -R  dados/
+   73  cd dados/
+   74  ls -lah
+   75  sudo usermod -aG vboxsf diego
+   76  cd dados/
+   77  docker ps --all
+   78  docker ps --all 
+   79  docker ps -a
+   80  sudo apt remove chrome
+   81  which chrome 
+   82  which chrome-stable 
+   83  which google 
+   84  which firefox
+   85  ls /usr/bin/
+   86  sudo apt-get install pip 
+   87  sudo apt-get install pip3 
+   88  sudo apt install pip3 
+   89  sudo apt-get install python3
+   90  sudo apt-get install pip3
+   91  pip3
+   92  sudo apt-get install python3-pip
+   93  ls 
+   94  git pull 
+   95  dieffgg
+   96  git pull 
+   97  git pull dev 
+   98  git pull gestao-contratos dev 
+   99  git push -t dev 
+  100  git checkout -t dev
+  101  git branch -r
+  102  git branch -t dev gestao-contratos/dev 
+  103  git branch dev 
+  104  git branch -a
+  105  git clone https://github.com/raizen-analytics-ldt/gestao-contratos
+  106  git branch 
+  107  cd gestao-contratos/
+  108  git branch 
+  109  git checkout -b dev 
+  110  git branch
+  111  git clone https://github.com/raizen-analytics-ldt/gestao-contratos
+  112  cd gestao-contratos/
+  113  git branch -t dev gestao-contratos/dev
+  114  git branch -t dev gestao-contratos dev
+  115  git branch -a 
+  116  git merge dev 
+  117  git branch -a 
+  118  git 
+  119  git branch -t dev origin/dev
+  120  git branch -a 
+  121  git checkout dev 
+  122  git checkout origin/dev 
+  123  git checkout -b origin/dev 
+  124  git branch 
+  125  cd .. 
+  126  cd ... 
+  127  cd ..
+  128  cd .. 
+  129  git clone https://github.com/raizen-analytics-ldt/gestao-contratos
+  130  git branch -a 
+  131  cd gestao-contratos/
+  132  git branch -a 
+  133  git checkout remotes/origin/dev
+  134  git branch -a 
+  135  git brach 
+  136  git branch 
+  137  git clone https://github.com/raizen-analytics-ldt/gestao-contratos
+  138  apt-get install vim 
+  139  sudo apt-get install vim 
+  140  git config user.email "ferreira.dfg@gmail.com"
+  141  git config user.name "Diego Gonçalves"
+  142  docker-compose up -d
+  143  docker ps
+  144  cd dags/
+  145  git submodule update --init
+  146  docker ps
+  147  cd gestao-contratos/
+  148  git pull 
+  149  git branch 
+  150  git pull origin/dev 
+  151  git status 
+  152  docker-compose down
+  153  docker-compose up
+  154  ls
+  155  docker-compose exec template-worker bash
+  156  docker exec ondemand_template-worker_1 bash
+  157  docker ps --all
+  158  docker exec -it ondemand_template-worker_1 bash
+  159  docker restart ondemand_template-worker_1 
+  160  docker exec -it ondemand_template-worker_1 bash
+  161  ls
+  162  docker ps --all
+  163  docker exec -it gestaocontratos_worker_1 bash
+  164  docker exec -it ondemand_template-worker_1 bash
+  165  docker exec -it gestaocontratos_worker_1 bash
+  166  docker exec -it ondemand_template-worker_1 bash
+  167  docker-compose down
+  168  docker-compose up
+  169  docker restart memcached 
+  170  docker ps 
+  171  docker-compose up --force-recreate --build -d
+  172  az 
+  173  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+  174  sudo apt-get update
+  175  sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
+  176  curl -sL https://packages.microsoft.com/keys/microsoft.asc |      gpg --dearmor |      sudo tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null
+  177  AZ_REPO=$(lsb_release -cs)
+  178  echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" |      sudo tee /etc/apt/sources.list.d/azure-cli.list
+  179  sudo apt-get update
+  180  sudo apt-get install azure-cli
+  181  (lsb_release -cs)
+  182  AZ_REPO=bionic
+  183  echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" |      sudo tee /etc/apt/sources.list.d/azure-cli.list
+  184  sudo apt-get update
+  185  sudo apt-get install azure-cli
+  186  az login
+  187  az acr login --rzldt
+  188  az acr login --name rzldt
+  189  docker-compose up --force-recreate --build -d
+  190  docker ps
+  191  docker-compose up --force-recreate --build -d
+  192  docker ps
+  193  docker ps 
+  194  ls -ltr
+  195  more docker-compose.yml 
+  196  docker ps 
+  197  history | grep "docker-compose"
+  198  cd docker/ondemand/
+  199  ls -ltr
+  200* more docker-compose.ym
+  201  history
+  202  more docker-compose.yml 
+  203  more Dockerfile 
+  204  history
+
+05
+
+how to install zsh on linux 
+
+
+sudo apt-get update 
+sudo apt-get install git-core zsh
+
+lets change default shell
+chsh -s /bin/zsh
+
+okay now zsh is default shell lets setup oh myzsh
+wget --no-check-certificate http://install.ohmyz.sh -O - | sh
+
+
+06 
+
+
+ 1  history 
+    2  echo $SHELL
+    3  cd gestao-contratos
+    4  git status 
+    5  docker-compose up 
+    6  az login
+    7  200~az acr login --rzldt
+    8  az acr login --rzldt
+    9  az acr login --name rzldt
+   10  docker-compose up --force-recreate --build -d
+   11  more docker-compose.ym
+   12  cd docker/ondemand
+   13  more docker-compose.ym
+   14  more docker-compose.yml
+   15  docker-compose up 
+   16  cd .. 
+   17  docker-compose up 
+   18  docker network ls
+   19  cd docker/ondemand
+   20  docker-compose up --force-recreate
+   21  docker restart 
+   22  docker ps -a 
+   23  docker restart gestao-contratos-worker 
+   24  cd .. 
+   25  docker restart gestao-contratos-worker 
+   26  docker ps -a 
+   27  docker restart a5f066093eb7 
+   28  docker ps 
+   29  docker container prune $(docker ps -q)
+   30  docker kill 
+   31  docker ps 
+   32  docker stop $(docker ps -q)
+   33  docker-compose up 
+   34  history 
+   35  clear 
+   36  docker ps 
+   37  cd docker/ondemand
+   38  docker-compose up
+   39  docker run -it python3 
+   40  docker run -it python3:latest 
+   41  docker run -it python
+   42  docker ps -a 
+   43  docker -it exec e41ca8f724dc
+   44  docker exec -it e41ca8f724dc
+   45  docker run -it e41ca8f724dc
+   46  docker restart e41ca8f724dc
+   47  docker ps -a 
+   48  docker ps 
+   49  docker exec e41ca8f724dc
+   50  docker exec -it -a e41ca8f724dc
+   51  docker exec -it e41ca8f724dc
+   52  docker run e41ca8f724dc
+   53  docker login 
+   54  docker run e41ca8f724dc
+   55  sudo docker images -q
+   56  docker ps 
+   57  docker run e41ca8f724dc
+   58  docker run -it python
+   59  history 
+   60  docker history 
+   61  docker history --help 
+   62  docker history -q
+   63  docker history -H
+   64  docker ps -q
+   65  docker ps 
+   66  docker ps -a 
+   67  docker stop $(docker ps -a)
+   68  docker ps -a 
+   69  docker ps 
+   70  cd gestao-contratos
+   71  docker-compose donw 
+   72  docker-compose down  
+   73  docker-compose up 
+   74  cd docker/ondemand
+   75  docker-compose down 
+   76  docker-compose up 
+   77  docker ps 
+   78  docker top cecb4b169b6c
+   79  cd ../..
+   80  ../..
+   81  pwd 
+   82  ..
+   83  pwd
+   84  docker run --name python python 
+   85  docker ps 
+   86  docker ps -a 
+   87  docker kill 2a230e006d38
+   88  docker prune 2a230e006d38
+   89  docker 2a230e006d38 prune 
+   90  docker rm 2a230e006d38
+   91  docker rm e41ca8f724dc
+   92  docker exec python 
+   93  docker exec -it python
+   94  docker ps -a 
+   95  docker start -it python 
+   96  docker -it start python 
+   97  docker start -a python 
+   98  docker ps 
+   99  docker attach python 
+  100  docker start -a  python 
+  101  docker -a  start python 
+  102  docker start python 
+  103  docker attach python 
+  104  docker start attach python 
+  105  docker exec -it python 
+  106  docker start -it python 
+  107  docker start --help 
+  108  docker start -a python 
+  109  docker start --attach python 
+  110  docker start -i python 
+  111  docker start -interactive python 
+  112  docker start --interactive python 
+  113  docker ps -a 
+  114  docker attach ea1d677b643b
+  115  docker start -a  ea1d677b643b
+  116  docker start -i  ea1d677b643b
+  117  docker start -it  ea1d677b643b
+  118  docker start -i -t  ea1d677b643b
+  119  docker exec -it  ea1d677b643b
+  120  docker start -it 
+  121  docker start -it ea1d677b643b
+  122  docker exec ea1d677b643b
+  123  docker exec -a  ea1d677b643b
+  124  docker exec --help
+  125  docker exec -i ea1d677b643b
+  126  docker start -a -i ea1d677b643b
+  127  docker run -it ea1d677b643b
+  128  docker exec -it python 3 > 5
+  129  docker exec -it python 3>5 
+  130  docker exec -it python ]
+  131  docker run python python 
+  132  docker ps -a 
+  133  docker rm 5ae46dd9653d
+  134  docker ps -a 
+  135  docker start python 
+  136  docker start python python3 
+  137  docker exec -it python python3
+  138  docker exec python 
+  139  docker exec python python3 
+  140  docker attach python 
+  141  docker ps 
+  142  docker ps -a 
+  143  docker start ea1d677b643b 
+  144  docker ps -a
+  145  docker start -a ea1d677b643b 
+  146  docker start -d ea1d677b643b 
+  147  docker start --help 
+  148  docker run --name py python3 
+  149  docker run -it --name py python3 
+  150  docker run --name py -it python3 
+  151  docker run -it python3
+  152  docker login 
+  153  docker run -it python3
+  154  docker run -it python
+  155  docker ps -a 
+  156  docker rm python 
+  157  docker rm d9f9abc64e68
+  158  docker run -it --name py python 
+  159  docker attach py 
+  160  docker start -a py 
+  161  docker stop py 
+  162  docker start -a py 
+  163  docker stop py 
+  164  docker ps -a 
+  165  docker stop $(docker ps -q) 
+  166  docker start -a py 
+
+
+
+

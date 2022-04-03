@@ -1,0 +1,589 @@
+so surgimento das maquinas virtuais 
+
+quais vantagens dos containers 
+tem tudo a ver com apps 
+
+maquians virtuais e config.
+server e app era um p 1 
+muitos erros de config.
+10 apps 10 servers 10 ped. de compra 10 so 10 pos. racks 10infra de red
+eram toneladas para infra 
+novas apps demoravam muito 
+o desperdicio maçico de recursos 
+90% das usavamos menos da capacidade max. 
+servidores dedicados custavam muito 
+foi aí que veio a virtualização 
+veio o hypervisor 
+dividimos em varias vms
+poderiamos exec 10 apps em uma maquina fisica 
+
+o lado ruim da maquina virtual
+as maquinas eram usadas exageradamente 
+o modelo de maquinas virtuais era um monstro 
+o sistema operacional só existe para facilitar exec
+fizemos é cortar o excesso de maquina fisica 
+cada so. traz um monte de custo operacionais 
+cada so. precisa de uma licença 
+o modelo de mv é melhor que maquina fisica 
+tudo que uma aplicação precisa para rodar é um ambiente isolado e seguro e com serviços minimos do so 
+o custo de vm é alto demais 
+
+CONTAINERS 
+containers são pouco similares as maquina virtuais 
+são muito mais leves que uma maquina virtual 
+eles fornecem um ambiente de exec isolado e seguro para deploy de nossas apps 
+
+maquina fisica
+docker foi concebido originalmente no linux
+linux instalado no hardware
+o kernel linux controla e gerencia o hardware sobre ele 
+userspace
+o que os containers permitem é criar varias instancias isoladas do userspace, cada instancia isolada é um userspace 
+containers são conceitualmente similares as maquinas virtuais 
+cada container é um so super leve, nada parecido com so completo que temos na maquina virtual 
+cada container compartilha um unico kernel linux em comum 
+cada container consome menos memoria ram e menos espaço em disco 
+
+CONTAINERS VISTO DE DENTRO 
+sistemas operacionais não são bons em isolar apps e impedir-las de sobrepor-las umas as outras
+um container é uma instancia isolada do user space 
+sistemas de arq. um container tem proprios sistema de arq.  dez containers tem 10 visualizacoes isoladas
+cada container tem sua propria visao do sistema de arq. 
+visao independente de arvore de processso 
+cada container possui sua propria hierarquia de processo 
+isolada e independente, cada container possui sua propria visao ou sua propria stack de rede
+
+kernel -> namespaces permitem particionar arvores de processo e atribui cada partição ao container especifico,uma particição é isolada e só pode ser acessada pelo container pai a uma unica visao da arvore de processo 
+container funcionam como paredes que impedem que os processos de um container impeçam de acessar processos fora do container 
+os namesspaces permitem particionar varios aspectos do sistema 
+cgroups agrupam recursos e aplicam limites 
+mapeamos containers para cgroups 
+se precisarmos aumentar a quantidade de recursos que um container pode usar, basta ajustar os limites do cgroups 
+eles nos ajudam que um container possa rodar de forma descontralada 
+o docker suporta cgroups 
+capabilities 
+nos fornece um controle refinado sobre quais privilegios um usuario tem ou processo tem, capabilities obtem os privilegios do usuario root os dividi em privilegios menores, capabilities são importantes para o ponto de vista de seguraça 
+
+DOCKER
+nucleo do docker é o container runtime 
+o docker é uma implementação real de uma tecno de container 
+
+docker engine 
+so ->>>> namespaces | cgroups | capabilities 
+servidor fisico ->>>> hardware 
+
+é uma implementação pronta e empacotada 
+fornece um ambiente de exec uniforme e padrão 
+como ambiente de dispositivo de sistema de arqui, var, e api 
+muito parecido com uma criação para android 
+portabilidade de apps 
+docker é open source 
+está se tornando uma plataforma 
+docker images, docker registry (docker hub), clustering(docker swarm), orchestration(docker compose),networking(libchan)
+dotCloud as service 
+
+lxc e docker, o docker usava o lxc com driver de exec padrão, como uma interface para manipular os recursos do kernel 
+o pessoal do docker não controlava o desenvolvimento do lxc 
+libcontainer escrever e abrir o codigo do libcontainer
+libcontainer é diretamente controlado pelo pessoal do docker e pode empacotar com o docker deamon
+e possibilitou o docker ser cross plataforma, windows e linux
+é o driver de exec padrão no docker 
+
+processadores especiais para containers 
+
+o docker tendem a funcionar melhor e estimula a arq. de
+microserviços, arquiteturas são projetadas como um conjunto de serviços menores, que operam coletivamente  para formar a app, cada um desses serviços de componentes menores é exec com unico processo, esses containers e processos comunicam entre si para formar a app geral que engloba cada componente, cada um desses componentes pode ser atualizado individualmente. 
+docker registry são similares ao github, só que para docker hub
+
+instalação no linux 
+particuliaridades é o gerenciador de pacotes 
+
+23
+sudo su 
+senha
+service docker.io status 
+kernel do linux suporta o docker, 64 bits, kernel 3.8
+uname -a | versão do kernel 
+apt-get update 
+apt-get install -y docker.io 
+service docker.io status | status  
+docker -v | versão 
+docker version | mais detalhes 
+docker info | traz ainda mais detalhes 
+ls -l /run | listar 
+docker run -it ubuntu /bin/bash 
+cat /etc/group | ver membros de grupo 
+sudo gpasswd -a diego docker | permissão docker 
+cat /etc/group | 
+docker run -it ubuntu /bin/bash 
+exit 
+
+ao iniciar um container ele precisará criar namespaces, cgroups, gerenciar capabilities 
+por padrão o docker escuta o socket unix local /var/run 
+ls -l /run | ver docker.socket 
+controlar quais usuarios são membros do grupo 
+cat /etc/group | certificar que o grupo existe 
+ls -l /run
+sudo gpasswd -a diego docker | adicionando usuario
+
+
+24 CONFIGURANDO O DOCKER PARA SE COMUNICAR ATRAVES DA REDE 
+
+docker -v | versão do docker 
+ip addr show | descobrir o ip da nossa maquina 
+service docker stop | parar o servico  do docker 
+dockerd -H tcp://endereço..:2375 & | inicializa o docker deamon H é o host, & devolver o prompt 
+export DOCKER_HOST='tcp://192.168.56.106:2375'
+docker version 
+docker info | informações do docker 
+export DOCKER_HOST= | voltar para o host padrao 
+
+25 EXECUTANDO NOSSO PRIMEIRO CONTAINER 
+docker run -it centos /bin/bash | it interativo
+ping 8.8.8.8 
+ps -elf | processos no linux (dentro do centos container)
+cat /etc/hosts | conferir sistemas de arquivos
+ip a | obter endereço de ip 
+uname -a | versão corrente do kernel (usa o kernel da maquina hospedeira)  
+cat /etc/red-hat-release | (vemos a versão container so)
+apt-get update 
+vim /tmp/testfile | editor dentro do container 
+docker start CONTAINER_ID 
+docker attach CONTAINER_ID  | para me vincular ao container 
+
+
+
+28 UMA VISAO GERAL 
+
+comparar com porto 
+docker engine (daemon)
+
+29 DOCKER ENGINE (DEAMON OU RUNTIME)
+
+um programa docker que instalamos em cada um do hosts ELE É O resposavel por prover o ambiente docker o possibilitar o acesso a todos os servicos do docker, infraestutura de apps e dependencia de tempo de exec stacks de rede, sistemas de arqu, rotas, hierarquia de processos, alocação de recursos.
+o ambiente de runtime padronizado 
+
+30 DOCKER IMAGES 
+
+ELES CONTEM UM LISTA DE TUDO QUE ESTÁ EM UM CONTAINER (CARGO MANIFESTS) E INSTRUÇÕES DE COMO MONTA-LOS
+AS IMAGENS SÃO COMO MODELOS NO MUNDO DAS MAQUINAS VIRTUAIS 
+sempre queremos inicializar um container precisamos de uma imgem, 
+docker run -it fedora /bin/bash 
+numero de camadas que uma imagem possui 
+latest 
+na pratica baixamos a imagem do docker hub, no docker hub
+não é possivel exec sem especificar a img 
+não temos a imagem do fedora localmente 
+crtl p q sai do container 
+docker pull -a fedora | BAIXA TODAS A IMG
+DOCKER IMAGES FEDORA  | são todas as imagens do fedora  
+AS IMG SÂO ARMAZENADAS NO DIRETORIO /var/lib/docker/overlay2/ (versão antiga pode mudar de overlay)
+
+31 CONTAINERS 
+são inicializados a partir de uma imagem, como se fosse instancias em exec de uma img
+build-time images 
+container runtime 
+
+docker run -it ubuntu /bin/bash
+
+imagens tem os pacotes minimos 
+docker attach CONTAINER_ID
+pstree | 
+man | 
+iostat | 
+ctrl p q | sair do container sem matalo 
+docker ps -a 
+
+32 REGISTRIES E O DOCKER HUB 
+
+por padrão baixamos todas as imagens do registries 
+portanto o repo do ubuntu por parceria 
+temo as referencias rapidas no repo 
+podemos filtrar por filtro de categorias 
+
+35 CAMADAS DE IMAGENS 
+as camadas são estáticas e tem camadas empilhadas 
+na pratica uma imagem é formada por uma pilha de outras imagens sobreposta e interconectadas. 
+na parte inferior temos nossa imagem de base é nela que está nosso sistema de arquivo raiz ou root file system, todos os arquivos e diretorios foram reduzidos ao minimo na camada de cima instalamos nossas aplicações, a ultima com config e atualizações
+
+36 UNION MOUNTS 
+
+cada camada ou imagem recebe seu proprio UUID esses id são armazenados na imagem do docker junto aos metadados que informam ao docker como criar o docker em tempo de exec, por fim todas as camadas são combinadas em uma unica visualização. Como resultado temos uma unica visualizacao combinadas de todas as camadas, com os dados nas camadas superiores. caso ocorra algum conflito,
+o docker lida com isso sempre definindo o que está na camada superior. Na pratica o union mounts permite montar varios sistemas de arquivos uns sobres os outros 
+se comportando como se fosse um unico sistema de arquivos
+rootfs é na camada base 
+o docker pode gravar alterações no container so na camada superior 
+
+
+37 onde as imagens são armazenadas no sistema de arquivos 
+
+docker images | lista as imagens 
+/var/lib/docker/overlay2/ | onde fica as imagens 
+ls -lia /var/lib/docker/overlay2/ | inspecionar as camadas 
+
+docker pull ubuntu | baixar a img
+[dentro do container]sudo ls -lia /var/lib/docker/overlay2/ | dentro do container 
+
+38 copiando imagens para outros hosts 
+
+docker images | listar img
+docker run ubuntu /bin/bash -c "echo Nice Content" > /tmp/nice-content" | escrevendo dentro do container 
+docker ps -a | listando o container ubuntu 
+docker commit CONTAINER_ID foo-bar | a partir do id do container 
+docker images | temos uma nova imagem 
+docker save -o /mnt/Shared/foo-bar.tar foo-bar | salvando uma imagem já existente chamada foo-bar na pasta shared com tar 
+ls -lh /mnt/Shared/foo-bar.tar | listando 
+tar -tf /mnt/Shared/foo-bar.tar | EXTRAINDO DO DIRETORIO
+docker load -i /mnt/Shared/foo-bar.tar | le o arquivo e importa para o diretorio das imagens 
+docker run -it foo-bar /bin/bash | executar a imagem de foo-bar 
+cat /tmp/nice-content | ler o arquivo 
+
+39 A camada de escrita dos containeres 
+
+as as imagens são construidas em tempo de build 
+os container são construidos em tempo de exec 
+
+as imagens são usadas pra inicializar os containers 
+
+todos os container obtem sua camada de escrita no topo 
+todas as camadas abaixas são somente de leitura 
+na camada superior que todos as alterações em container são feitas, absolutamente qualquer mudança é feita na camada superior 
+
+essa fina camada está inicialmente vazia 
+portanto se fizer muitas alterações a camada fica grande 
+rootfs está na camada inferior 
+graças ao union mounts podemos gravar na camada de cima 
+como se fosse um sistema de arquivos normal 
+
+40 UM PROCESSO POR CONTAINER 
+
+os container são projetados para atender de larga escala e de microserviços 
+
+docker run -d centos /bin/bash -c "ping 8.8.8.8 -c 50" | subir um container centos de forma dettachada e pingar 50 vezes 
+
+41 COMANDOS PARA TRABALHAR NOS CONTAINERS 
+
+documentation do docker run 
+
+docker run --cpu-shares=256 nomedaimagem | quanto de cpu eu quero nessa img 
+docker run memory=1g | gerenciar a memoria 
+docker run -d centos:7 /bin/bash -c "ping 8.8.8.8"
+docker ps 
+docker inspect CONTAINER_ID 
+docker logs CONTAINER_NAME | ver os logs dos containers 
+docker attach CONTAINER_ID | ser atachar ao container enquanto o container tiver de pé vai aparece pra mim 
+
+44  INICIANDO E PARANDO OS CONTAINERS 
+docker run -it ubuntu:1904 /bin/bash
+ctrl p q | deixa em exec 
+docker stop CONTAINER_ID OR CONTAINER_NAME
+sempre que inicializa uma app ele dá um PID 
+docker kill -s <SIGNAL> de força bruta
+docker ps -l | o container que foi exec por ultimo 
+docker start CONTAINER_ID | inicia o container detachado
+docker attach CONTAINER_ID 
+docker restart CONTAINER_ID | restarta o container 
+
+45 PID 1 E CONTAINERS
+
+PID 1 = INIT 
+docker run ... = PID 1 
+init é mãe de todos os processos
+init tem funções importantes e especiais 
+PID 1 em containers não foi projetado para ser um init 
+UM PROCESSO POR CONTAINER 
+mas podemos exec mais de um processo por container 
+existem docker img que executam mais de um processo 
+mas viola um dos principios chaves do docker 
+exec ssh no container ou mais de um processo no container 
+
+46 DELETANDO CONTAINERS 
+
+os containers assim como as imagens são armazenadas no diretorio 
+/var/lib/docker/containers/
+
+docker ps | ver que o que esta exec 
+docker info | lista diferentes detalhes do docker 
+clear 
+ls -l /var/lib/docker/containers/ | temos a lista de containers 
+ls -l /var/lib/docker/containers/ | wc -l | quantidade de containers
+docker ps | 
+docker rm CONTAINER_ID | remove o container 
+docker stop CONTAINER_ID | temos que parar antes de remover
+docker rm CONTAINER_ID -f | forçar remover 
+docker info | conferir se diminuiu os containers
+ls -l /var/lib/docker/containers/ | listar os containers 
+ls -l /var/lib/docker/containers/ | wc -l 
+ls -l /var/lib/docker/containers/[hashdocontainer]
+alias dps="docker ps" | definindo o comando no alias 
+
+47 OLHANDO DENTRO DOS CONTAINERS 
+docker run --rm -t -i phusion/baseimage /sbin/my_init --bash -l | customizações da imagem ubuntu 
+crtl + p + q 
+docker top CONTAINER_ID 
+docker attach CONTAINER_ID 
+ps -ef 
+docker logs CONTAINER_ID | log do container 
+
+48 INFORMAÇÕES DE BAIXO NIVEL 
+docker ps 
+docker inspect CONTAINER_ID | inspecionar o container e onde é armazenado? JSON na maquina host 
+clear 
+docker ps | 
+ls -l /var/lib/docker/containers/ | ir no diretorio do container 
+ls -l /var/lib/docker/containers/CONTAINER_ID | vai ter um arquivo config.v2.JSON
+cat /var/lib/docker/containers/CONTAINER_ID/config.v2.json | vamos ter a informação em json 
+
+49 ACESSANDO O SHELL DO CONTAINER 
+docker attach | atacha ao PID 1 dentro do container 
+nsenter | nos permite acessar NAMESPACES 
+nsenter precisa do pid do container 
+docker inspect CONTAINER_ID | grep Pid | o que interessa é o primeiro 
+nsenter -m -u -n -p -i -y pid_encontrado /bin/bash | é diferente do attach, temos comandos linux a mais, conseguimos executar container e sair sem matalo 
+docker exec -it CONTAINER_ID /bin/bash | dentro do container 
+
+
+52 CONHECENDO O DOCKERFILE 
+
+Dockerfile | primeira maiscula 
+texto plano, sintaxe simples, instrucoes como construir um img 
+instrucoes lidas da esquerda para a direita de cima para baixo 
+precisamos escolher de acordo com arquitetura da nossa app, temos que considerar que quando criamos uma img a partir dele qualquer arquivo no diretorio ou mais abaixo ou na arvore de arquivo é incluindo na nossa app 
+é incluido na nossa compilacao, nao podemos colocar no nosso diretorio root a menos que queremos incluir todos os arquivos do nosso sistema que nunca é o caso 
+
+o comando docker build constrói uma imagem docker a partir do Dockerfile 
+
+53 Criando um Dockerfile 
+é a base para construir nossas img 
+criar uma pasta docker 
+cd docker 
+criar um arquivo de texto 
+vim Dockerfile 
+insert 
+# comentarios no dockerfile 
+#hello world with ubuntu based image
+
+FROM ubuntu:18.04 
+MAINTEINER ferreira.dfg@gmail.com
+RUN apt-get update
+
+instrucoes RUN -Executam comandos quando o container estiver sendo montado, podemos usa-las para instalar uma liguagem de programação como o java, python ou .NET
+
+RUN apt-get install -y ngnix 
+RUN apt-get install -y golang 
+para cada uma dessa instrucoes sobe o container e commita as mudanças 
+CMD ["echo", "HELLO WORLD"]
+ESC :wq 
+ls | está o dockerfile dentro da nossa pasta 
+
+54 CONSTRUINDO UMA IMAGEM A PARTIR DE UM DOCKERFILE
+cat Dockerfile
+docker build -t helloworld:0.1 . | constroi a imagem e versão dela e ponto é contexto onde a img está 
+docker history IMAGE_NAME 
+docker run helloworld:0.1
+docker ps 
+
+55 INSPECIONANDO um dockerfile no dockerhub 
+
+57 TRABALHANDO COM DOCKER REGISTRIES 
+antigamente o docker REGISTRIES era escrito em python agora é escrito em golang 
+
+58 CRIANDO UM REPOSITORIO PUBLICO NO DOCKER HUB
+
+quando fazemos um docker run e a imagem local não está, ele faz um docker pull
+
+59 USANDO NOSSO REPOSITORIO PUBLICO NO DOCKER HUB 
+
+docker tag IMAGE_ID DOCKER_HUB_USER / DESTINATION_IMAGE:TAG 
+
+
+docker build -t TAG_NAME:VERSION | a flag -t é pra tagear uma img 
+docker login docker.io | logar no docker hub 
+docker push IMAGE_NAME | enviar a imagem para o docker hub
+
+docker images | 
+docker ps -a | 
+docker rm CONTAINER_ID | 
+docker rmi IMAGE_ID | remove todas imagens 
+docker pull REPOHUB/NOMEDAIMG:1.0 | baixar a img do docker hub 
+docker images | 
+
+64 DOCKER ENTERPRISE EDITION 
+
+proposta é oferecer tudo que o docker hub oferece, a principal foco era segurança, docker hub esta revolucionando a ti corporativa 
+docker hub é docker registry padrão 
+private registries 
+docker ENTERPRISE EDITION 
+
+67 CACHE DE BUILD  
+O COMANDO DOCKER BUILD CONSTROI UMA imagem docker a partir do Dockerfile 
+
+docker info | 
+mkdir foo-bar | criando um diretorio 
+cp udemy/Dockerfile foo-bar/ | COPIANDO 
+vim Dockerfile 
+
+RUN apt-get install -y apache2
+RUN apt-get install -y vim 
+ESC :WQ 
+cat Dockerfile 
+docker build -t="build1" .  | nesse contexto é ponto t é de tagear 
+
+68 DOCKER FILE E CAMADAS 
+
+dokcer info | 
+ls -lia /var/lib/docker/overlay2/ | mostra as camadas 
+docker images | mostra as imagens 
+vim Dockerfile | editar 
+
+run apt-get install -y golang | dentro do dockerfile  
+esc :wq 
+docker build -t="build3" | buildando e tageando 
+docker images 
+docker info 
+docker history build3  | camadas da imagem 
+
+
+69 CONSTRUINDO UM SERVIDOR WEB A PARTIR DO DOCKERFILE 
+
+mkdir webserver 
+cp foo-bar/Dockefile webserver/
+vim Dockerfile 
+insert 
+
+FROM ubuntu:18.04
+RUN apt-get update  
+RUN apt-get install -y apache2
+RUN apt-get install -y apache2-utils
+RUN apt-get install -y vim
+EXPOSE 80 
+CMD["apache2ctl","-D","FOREGROUND"]
+ESC :WQ 
+
+docker build -t="webserver"
+
+70 INICIALIZANDO O CONTAINER NO SERVER WEB 
+docker images 
+
+docker run -d -p 80:80 webserver
+localhost:80 
+
+71 REDUZINDO O NUMERO DE CAMADAS EM UMA IMAGEM 
+docker history webserver 
+vim Dockerfile 
+insert 
+
+FROM ubuntu:18.04
+RUN apt-get update && apt-get install -y \ 
+                      apache2 \  
+                      apache2-utils \ 
+                      vim \ 
+                      && apt-get clean \ 
+                      && rm -rf /var/lib/lib/apt/lists/* /tmp/* /var/tmp/*
+EXPOSE 80 
+CMD["apache2ctl","-D","FOREGROUND"]
+
+ESC :WQ 
+
+cat Dockerfile 
+docker build -t="webserver-smaller" .
+
+docker history webserver-smaller
+
+
+72 A INSTRUÇÃO CMD 
+
+CMD ---> runtime 
+RUN ----> buildtime / compilação 
+
+cmd é similar ao run 
+cmd executa comando em containers durante a inicialização 
+
+run compila e adiciona camadas as imagens, usado para instalar aplicações 
+Um cmd por Dockerfile 
+
+shelform pega os comandos da mesma forma que o shell 
+
+Execform 
+
+
+
+---------------------------------------------------------------------------------------
+
+
+docker kill MyContainer | se quisermos finalizar um container Docker
+
+docker stats | Para ver estatísticas do container como utilização de CPU, uso de memória, etc
+
+sudo docker top MyContainer |Se nós desejarmos ver o principal processo de um container
+
+sudo docker stop MyContainer | Para parar o container
+
+docker run --name MyContainer -it ubuntu bash | Para iniciar o container
+
+
+||||||||
+
+
+Docker ps -a - todos os containers que criei, iclusive os parados
+
+Docker ps -
+docker --version
+docker run hello-world
+docker run -it - permite entrar dentro do container e atrelar o terminal dentro dele
+docker start
+
+docker ps - exibe todos os containers em execução no momento.
+
+docker ps -a - exibe todos os containers, independentemente de estarem em execução ou não;
+
+docker run -it NOME_DA_IMAGEM - conecta o terminal que estamos utilizando com o do container. (atrela ao container);
+
+docker start ID_CONTAINER - inicia o container com id em questão
+
+docker stop ID_CONTAINER - interrompe o container com id em questão.
+
+docker start -a -i ID_CONTAINER - inicia o container com id em questão e integra os terminais, além de permitir interação entre ambos.(flag attach e interativo)
+
+docker rm ID_CONTAINER - remove o container com id em questão.
+
+docker container prune - remove todos os containers que estão parados. (limpa todos os containers)
+
+docker rmi NOME_DA_IMAGEM - remove a imagem passada como parâmetro.
+
+TODA IMAGEM É COMPOSTA DE MAIS DE UMA CAMADA, PODEMOS USAR OU CRIAR UM CONTAINER COM UMA IMAGEM JA EXISTENTE, O CONTAINER É CRIADO A PARTIR DE IMAGEM. uMA IMAGEM É COMPOSTA DE VARIAS CAMADAS QUE PODEM SER REAPROVEITADAS. CAMADAS BASE SÃO READ ONLY. QUANDO CRIAMOS UM CONTAINER CRIAMOS UMA LAYER EM CIMA DA IMAGEM PRINCIPAL. O CONTAINER É LAYER FINA EM CIMA DA IMG. ADICIONAMOS UMA CADA FINA EM CIMA DA IMG PARA ESCRITA.
+
+docker run -d -P --name NOME_NOVO_CONTAINER (-P atribui portas aleatorias)
+
+docker port ID_CONTAINER (descobrir portas dos containers)
+
+Docker run –d –P nomedocontainer –d (é nao atrelar ao terminal e P é atribuir porta aleatoria ao container)
+
+docker run -d -P --name NOME_NOVO_CONTAINER dockersamples/static-site - ao executar, dá um nome ao container. (MODO D Assim, o container fica executando em segundo plano.)
+
+docker run -d -p 12345:80 dockersamples/static-site - define uma porta específica para ser atribuída à porta 80 do container, neste caso 12345.
+(o p mapeia a porta)
+
+docker run -d -P -e AUTHOR="Fulano" dockersamples/static-site - (define uma variável de ambiente AUTHOR com o valor Fulano no container criado.)
+
+docker ps -q(retorna apenas o ids)
+
+docker stop $(docker ps –q)
+
+docker stop -t 0 $(docker ps -q)
+
+docker run -v "C:\logs:/var/www" ubuntu
+
+
+Cap 02 SALVANDO DADOS COM VOLUMES
+
+o volume de dados aponta para do docker host
+criamos uma pasta em docker host
+
+docker run -v "/var/www" ubuntu
+
+docker inspect ID_CONTAINER
+docker run -it -v "C:\diego\documents\docker:/var/www" ubuntu
+
+rodando codigo em um container
+docker run -v  node

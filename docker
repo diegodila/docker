@@ -17,82 +17,85 @@ veio o hypervisor
 dividimos em varias vms
 poderiamos exec 10 apps em uma maquina fisica 
 
+05
 o lado ruim da maquina virtual
 as maquinas eram usadas exageradamente 
 o modelo de maquinas virtuais era um monstro 
 o sistema operacional só existe para facilitar exec
-fizemos é cortar o excesso de maquina fisica 
-cada so. traz um monte de custo operacionais 
-cada so. precisa de uma licença 
-o modelo de mv é melhor que maquina fisica 
-tudo que uma aplicação precisa para rodar é um ambiente isolado e seguro e com serviços minimos do so 
-o custo de vm é alto demais 
+fizemos é cortar o excesso de maquina fisica
+cada so. traz um monte de custo operacionais
+cada so. precisa de uma licença
+o modelo de mv é melhor que maquina fisica
+tudo que uma aplicação precisa para rodar é um ambiente isolado e seguro e com serviços minimos do so
+o custo de vm é alto demais
 
-CONTAINERS 
-containers são pouco similares as maquina virtuais 
-são muito mais leves que uma maquina virtual 
-eles fornecem um ambiente de exec isolado e seguro para deploy de nossas apps 
+06
+CONTAINERS
+containers são pouco similares as maquina virtuais
+são muito mais leves que uma maquina virtual
+eles fornecem um ambiente de exec isolado e seguro para deploy de nossas apps
 
 maquina fisica
 docker foi concebido originalmente no linux
 linux instalado no hardware
 o kernel linux controla e gerencia o hardware sobre ele 
 userspace
-o que os containers permitem é criar varias instancias isoladas do userspace, cada instancia isolada é um userspace 
-containers são conceitualmente similares as maquinas virtuais 
-cada container é um so super leve, nada parecido com so completo que temos na maquina virtual 
-cada container compartilha um unico kernel linux em comum 
-cada container consome menos memoria ram e menos espaço em disco 
+o que os containers permitem é criar varias instancias isoladas do userspace, cada instancia isolada é um userspace
+containers são conceitualmente similares as maquinas virtuais
+cada container é um so super leve, nada parecido com so completo que temos na maquina virtual
+cada container compartilha um unico kernel linux em comum
+cada container consome menos memoria ram e menos espaço em disco
 
-CONTAINERS VISTO DE DENTRO 
+07
+CONTAINERS VISTO DE DENTRO
 sistemas operacionais não são bons em isolar apps e impedir-las de sobrepor-las umas as outras
-um container é uma instancia isolada do user space 
+um container é uma instancia isolada do user space
 sistemas de arq. um container tem proprios sistema de arq.  dez containers tem 10 visualizacoes isoladas
-cada container tem sua propria visao do sistema de arq. 
-visao independente de arvore de processso 
+cada container tem sua propria visao do sistema de arq.
+visao independente de arvore de processso
 cada container possui sua propria hierarquia de processo 
 isolada e independente, cada container possui sua propria visao ou sua propria stack de rede
 
-kernel -> namespaces permitem particionar arvores de processo e atribui cada partição ao container especifico,uma particição é isolada e só pode ser acessada pelo container pai a uma unica visao da arvore de processo 
-container funcionam como paredes que impedem que os processos de um container impeçam de acessar processos fora do container 
-os namesspaces permitem particionar varios aspectos do sistema 
+kernel -> namespaces permitem particionar arvores de processos e atribui cada partição ao container especifico,uma particição é isolada e só pode ser acessada pelo container pai a uma unica visao da arvore de processo
+container funcionam como paredes que impedem que os processos de um container impeçam de acessar processos fora do container
+os namespaces permitem particionar varios aspectos do sistema
 cgroups agrupam recursos e aplicam limites 
-mapeamos containers para cgroups 
+mapeamos containers para cgroups
 se precisarmos aumentar a quantidade de recursos que um container pode usar, basta ajustar os limites do cgroups 
-eles nos ajudam que um container possa rodar de forma descontralada 
-o docker suporta cgroups 
-capabilities 
-nos fornece um controle refinado sobre quais privilegios um usuario tem ou processo tem, capabilities obtem os privilegios do usuario root os dividi em privilegios menores, capabilities são importantes para o ponto de vista de seguraça 
+eles nos ajudam que um container possa rodar de forma descontrolada
+o docker suporta cgroups
+capabilities
+nos fornece um controle refinado sobre quais privilegios um usuario tem ou processo tem, capabilities obtem os privilegios do usuario root os dividi em privilegios menores, capabilities são importantes para o ponto de vista de seguraça
 
+08
 DOCKER
 nucleo do docker é o container runtime 
-o docker é uma implementação real de uma tecno de container 
+o docker é uma implementação real de uma tecno de container
 
-docker engine 
+docker engine
 so ->>>> namespaces | cgroups | capabilities 
-servidor fisico ->>>> hardware 
+servidor fisico ->>>> hardware
 
 é uma implementação pronta e empacotada 
 fornece um ambiente de exec uniforme e padrão 
-como ambiente de dispositivo de sistema de arqui, var, e api 
+como ambiente de dispositivo de sistema de arqui, var, e api
 muito parecido com uma criação para android 
-portabilidade de apps 
-docker é open source 
-está se tornando uma plataforma 
+portabilidade de apps
+docker é open source
+está se tornando uma plataforma
 docker images, docker registry (docker hub), clustering(docker swarm), orchestration(docker compose),networking(libchan)
-dotCloud as service 
+dotCloud as service
 
-lxc e docker, o docker usava o lxc com driver de exec padrão, como uma interface para manipular os recursos do kernel 
-o pessoal do docker não controlava o desenvolvimento do lxc 
+lxc e docker, o docker usava o lxc com driver de exec padrão, como uma interface para manipular os recursos do kernel
+o pessoal do docker não controlava o desenvolvimento do lxc
 libcontainer escrever e abrir o codigo do libcontainer
 libcontainer é diretamente controlado pelo pessoal do docker e pode empacotar com o docker deamon
 e possibilitou o docker ser cross plataforma, windows e linux
-é o driver de exec padrão no docker 
-
+é o driver de exec padrão no docker
 processadores especiais para containers 
 
 o docker tendem a funcionar melhor e estimula a arq. de
-microserviços, arquiteturas são projetadas como um conjunto de serviços menores, que operam coletivamente  para formar a app, cada um desses serviços de componentes menores é exec com unico processo, esses containers e processos comunicam entre si para formar a app geral que engloba cada componente, cada um desses componentes pode ser atualizado individualmente. 
+microserviços, arquiteturas são projetadas como um conjunto de serviços menores, que operam coletivamente para formar a app, cada um desses serviços de componentes menores é exec com unico processo, esses containers e processos comunicam entre si para formar a app geral que engloba cada componente, cada um desses componentes pode ser atualizado individualmente.
 docker registry são similares ao github, só que para docker hub
 
 instalação no linux 
@@ -312,7 +315,7 @@ docker rm CONTAINER_ID | remove o container
 docker stop CONTAINER_ID | temos que parar antes de remover
 docker rm CONTAINER_ID -f | forçar remover 
 docker info | conferir se diminuiu os containers
-ls -l /var/lib/docker/containers/ | listar os containers 
+ls -l /var/lib/docker/containers/ | listar os containers
 ls -l /var/lib/docker/containers/ | wc -l 
 ls -l /var/lib/docker/containers/[hashdocontainer]
 alias dps="docker ps" | definindo o comando no alias 

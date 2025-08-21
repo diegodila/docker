@@ -1,0 +1,106 @@
+20082025
+
+1.1 o que é docker?
+é uma plataforma para construir, rodar e transferir aplicacoes do seu ambiente de teste ou de desenvolvimento para o ambiente de producao
+
+1.2 quais os problemas que o docker resolve?
+uma aplicacao que funciona na maquina local e nao funciona no servidor, por conta de compatibilidade de versoes de programas, ex: na maquina local eu tenho a versao de python 3.4 e quando vou colocar em prod eu tenho um servidor que so tem o python ate 2.1 quebrando toda a aplicacao
+
+ 1.3 como verificar a versao do docker?
+ docker version
+
+ 1.4 o que vai na imagem docker?
+ pedaco do os, ambiente (python, node), files, libraries, variables. é uma copia perfeita do ambiente onde rodamos uma aplicacao (todas as dependencia que ela precisa)
+
+ 1.5 o que é um container?
+ é um processo, onde fica a imagem 
+
+ 1.6 qual o é papel do container?
+ onde na minha maquina (cliente) tenho todas as dependecias e vou colocar em server onde tem o docker, apenas transfiro o container, basicamente transferir o ambiente de dev para prod.
+
+ 1.7 o que é docker hub (registry)?
+ é um github de imagens, um repositorio de container, onde conseguimos colocar a nossa imagem la dentro
+
+
+ 1.8 qual a imagem disponibilizada enxuta para linux?
+ alpine
+
+ 1.9 o que é o alpine?
+ uma imagem linux enxuta e leve 
+
+ 1.10 quando eu tenho node instalado em um container ele existe no so fora do docker?
+ nao
+
+ 1.11 o que é o dockerfile?
+ é um arquivo de configuracao 
+
+ 1.12 como se escreve o nome do arquivo Dockerfile?
+ com D maiusculo, Dockerfile
+
+ 1.13 o Dockerfile tem extensao?
+ nao
+
+ 1.14 o que passamos no arquivo Dockerfile?
+ o sistema operacional, as copias do arquivos locais para imagem, rodar comandos
+
+2.1 o que identifica o comando FROM no Dockerfile?
+ a plataforma e o sistema operacional
+
+2.2 o que faz o comando COPY?
+copia do diretorio para imagem
+
+2.3 faça a copia do diretorio raiz para a pasta /app do container
+FROM node:alpine
+COPY . /app
+
+2.4 O que faz o CMD no Dockerfile?
+roda comandos
+
+2.5 faça rodar um app node no Dockerfile
+FROM node:alpine
+COPY . /app
+
+CMD node /app/app.js
+
+2.6  o que é WORKDIR? 
+é diretorio de trabalho, ele começa a partir dali
+
+2.7 como construir uma imagem docker? 
+com o Dockerfile com as devidas especificacoes e rodando o comando docker build 
+
+2.8 o que faz o -t no docker build?
+coloca uma tag
+
+2.9 rode um comando no diretorio do Dockerfile para construir uma imagem
+docker build -t minhatag_repository . 
+
+2.10 como ver quais imagens eu tenho?
+docker images
+
+2.11 como fazer uma imagem virar uma container?
+docker run {nome_imagem}
+
+2.12 criei uma imagem com: 
+FROM node:alpine
+COPY . /app
+WORKDIR /app
+CMD node app.js           
+
+e depois fiz um docker run pelo nome da imagem, dentro do app.js tem console.log('hello docker'), porque o Hello docker so aparece uma vez? quando faço o start do container não aparece?
+Você não vê nada porque, por padrão, docker start não mostra logs interativos (só docker run faz isso).
+
+2.13 como fazer o docker start se tornar interativo
+docker start {nome_container} -a  
+O -a (attach) faz o start mostrar a saída no terminal
+
+2.14 como mostrar os logs de um container?
+docker logs {nome_container}
+
+2.15 o que é uma docker image?
+é uma cut down os, dentro de uma imagem tem uma sistema operacional
+tem todas as libraries
+arquivos da app
+variaveis de ambiente (env variable)
+ela contem tudo que é necessario para sua aplicacao funcionar 
+
+2.16 

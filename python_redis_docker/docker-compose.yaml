@@ -1,0 +1,25 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/home/jovyan
+    restart: unless-stopped
+    environment:
+      - REDIS_HOST=${REDIS_HOST}
+      - PASSWORD=${PASSWORD}
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN}
+    depends_on:
+      redis:
+        condition: service_healthy
+  redis:
+    image: redis/redis-stack-server:latest
+    ports:
+      - "8889:6379"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5

@@ -348,8 +348,9 @@ dns resolver
 docker-compose logs 
 
 
-
-
+6.14 quando temos um container python e queremos iniciar um servidor dentro desse container na porta 127.0.0.1:8000, com o host mapeado 8000:8000 no docker-compose, pq nao conseguimos visualizar essa aplicacao do host na porta 8000?
+127.0.0.1 ou localhost significa loopback (a própria máquina/processo). Se o servidor dentro do container sobe em 127.0.0.1, ele só escuta dentro do container. Do ponto de vista do host (seu PC), o container fica inacessível, mesmo com ports: "8000:8000"
+0.0.0.0 significa todas as interfaces de rede disponíveis. No Docker, isso inclui a interface que é exposta para o host.
 
 
 
@@ -379,4 +380,4 @@ echo "Diego" | grep "D"
 
 echo "Diego" escreve no STDOUT.
 O | (pipe) pega esse STDOUT e envia como STDIN para o grep.
-O grep lê do STDIN e imprime o resultado no STDOUT.
+O grep lê do STDIN e imprime o resultado no STDOUT

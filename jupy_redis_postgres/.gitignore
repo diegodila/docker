@@ -1,6 +1,7 @@
 # Created by https://gitignore.org
 # Python.gitignore
 .jupyter
+.jupyter/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

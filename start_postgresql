@@ -1,5 +1,5 @@
-docker pull
-docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+#docker pull
+#docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 
-docker run --name postgres --network=postgres-network -e "POSTGRES_PASSWORD=mysecretpassword@" -p 5432:5432 -v $HOME/my/path:/var/lib/postgresql/data -d postgres
+#docker run --name postgres --network=postgres-network -e "POSTGRES_PASSWORD=mysecretpassword@" -p 5432:5432 -v $HOME/my/path:/var/lib/postgresql/data -d postgres
 

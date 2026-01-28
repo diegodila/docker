@@ -10,7 +10,7 @@ uma aplicacao que funciona na maquina local e nao funciona no servidor, por cont
  docker version
 
  1.4 o que vai na imagem docker?
- pedaco do os, ambiente (python, node), files, libraries, variables. é uma copia perfeita do ambiente onde rodamos uma aplicacao (todas as dependencia que ela precisa)
+ pedaçoo do os, ambiente (python, node), files, libraries, variables. é uma copia perfeita do ambiente onde rodamos uma aplicacao (todas as dependencia que ela precisa)
 
  1.5 o que é um container?
  é um processo, onde fica a imagem 

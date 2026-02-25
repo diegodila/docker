@@ -10,7 +10,7 @@ uma aplicacao que funciona na maquina local e nao funciona no servidor, por cont
  docker version
 
  1.4 o que vai na imagem docker?
- pedaçoo do os, ambiente (python, node), files, libraries, variables. é uma copia perfeita do ambiente onde rodamos uma aplicacao (todas as dependencia que ela precisa)
+ pedaço do os, ambiente (python, node), files, libraries, variables. é uma copia perfeita do ambiente onde rodamos uma aplicacao (todas as dependencia que ela precisa)
 
  1.5 o que é um container?
  é um processo, onde fica a imagem 
@@ -354,6 +354,34 @@ docker-compose logs
 
 
 
+
+
+Diferença prática entre localhost, 127.0.0.1 e 0.0.0.0
+
+127.0.0.1 ou localhost
+
+Significa loopback (a própria máquina/processo).
+
+Se o servidor dentro do container sobe em 127.0.0.1, ele só escuta dentro do container.
+
+Do ponto de vista do host (seu PC), o container fica inacessível, mesmo com ports: "8000:8000".
+
+→ Isso foi o que aconteceu com você.
+
+0.0.0.0
+
+Significa todas as interfaces de rede disponíveis.
+
+No Docker, isso inclui a interface que é exposta para o host.
+
+Se você rodar em 0.0.0.0, o ports funciona e você acessa pelo http://localhost:8000
+ do seu PC.
+
+→ Isso é o que você precisa.
+
+localhost fora do container (no seu PC)
+
+Quando você digita http://localhost:8000 no navegador, o Docker redireciona essa porta para dentro do container, mas só se o processo dentro do container estiver ouvindo em 0.0.0.0.
 
 
 

@@ -28,7 +28,7 @@ uma aplicacao que funciona na maquina local e nao funciona no servidor, por cont
  1.9 o que é o alpine?
  uma imagem linux enxuta e leve 
 
- 1.10 quando eu tenho node instalado em um container ele existe no so fora do docker?
+ 1.10 quando eu tenho node instalado em um container ele existe no SO fora do docker?
  nao
 
  1.11 o que é o dockerfile?
@@ -44,7 +44,7 @@ uma aplicacao que funciona na maquina local e nao funciona no servidor, por cont
  o sistema operacional, as copias do arquivos locais para imagem, rodar comandos
 
 2.1 o que identifica o comando FROM no Dockerfile?
- a plataforma e o sistema operacional
+a plataforma ou aplicação e o sistema operacional
 
 2.2 o que faz o comando COPY?
 copia do diretorio para imagem
@@ -56,7 +56,7 @@ COPY . /app
 2.4 O que faz o CMD no Dockerfile?
 roda comandos
 
-2.5 faça rodar um app node no Dockerfile
+2.5 faça rodar uma aplicação node no Dockerfile
 FROM node:alpine
 COPY . /app
 
@@ -73,6 +73,9 @@ coloca uma tag
 
 2.9 rode um comando no diretorio do Dockerfile para construir uma imagem
 docker build -t minhatag_repository . 
+
+2.9.1 para construir um imagem precisamos estar no diretorio do Dockerfile?
+sim
 
 2.10 como ver quais imagens eu tenho?
 docker images

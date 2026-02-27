@@ -21,7 +21,6 @@ uma aplicacao que funciona na maquina local e nao funciona no servidor, por cont
  1.7 o que é docker hub (registry)?
  é um github de imagens, um repositorio de container, onde conseguimos colocar a nossa imagem la dentro
 
-
  1.8 qual a imagem disponibilizada enxuta para linux?
  alpine
 
@@ -41,7 +40,7 @@ uma aplicacao que funciona na maquina local e nao funciona no servidor, por cont
  nao
 
  1.14 o que passamos no arquivo Dockerfile?
- o sistema operacional, as copias do arquivos locais para imagem, rodar comandos
+ o sistema operacional, ambiente(aplicação ex: python, node), copias do arquivos locais para imagem, rodar comandos
 
 2.1 o que identifica o comando FROM no Dockerfile?
 a plataforma ou aplicação e o sistema operacional

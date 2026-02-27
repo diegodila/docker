@@ -97,7 +97,6 @@ e depois fiz um docker run pelo nome da imagem, dentro do app.js tem console.log
 2.16 qual a função de um container?
 
 
-
 3.1 o que faz o --rm no comando docker run?
 
 
@@ -141,7 +140,6 @@ e depois fiz um docker run pelo nome da imagem, dentro do app.js tem console.log
 3.10 qual o formato do comando CMD?
 
 
-
 3.11 qual a diferença do run e cmd?
 
 
@@ -161,7 +159,6 @@ e depois fiz um docker run pelo nome da imagem, dentro do app.js tem console.log
 
 
 4.1 quando o docker roda um Dockerfile ele otimiza como para ter melhor perfomance?
-
 
 
 4.2 Cada linha do Dockerfile é uma layer?
@@ -275,9 +272,7 @@ e depois fiz um docker run pelo nome da imagem, dentro do app.js tem console.log
 6.8 construa 2 containers no docker compose com frontend e backend onde o Dockerfiles respectivos estao na pasta frontend e backend
 
 
-
 6.9 construa 3 containers no docker compose com frontend, backend e db onde o Dockerfiles respectivos estao na pasta frontend, backend e o db utiliza a image mongo
-
 
     
 6.10 construa 3 containers no docker compose com frontend, backend e db onde o Dockerfiles respectivos estao na pasta frontend, backend e o db utiliza a image mongo e alem de tudo faça o mapeamento das portas e crie um volume para o db e as dependecias de cada container
@@ -290,7 +285,6 @@ e depois fiz um docker run pelo nome da imagem, dentro do app.js tem console.log
 
 
 6.13 como ver os logs do docker compose??
-
 
 
 6.14 quando temos um container python e queremos iniciar um servidor dentro desse container na porta 127.0.0.1:8000, com o host mapeado 8000:8000 no docker-compose, pq nao conseguimos visualizar essa aplicacao do host na porta 8000?

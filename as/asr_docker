@@ -31,7 +31,7 @@ uma aplicacao que funciona na maquina local e nao funciona no servidor, por cont
  1.10 quando eu tenho node instalado em um container ele existe no SO fora do docker?
  nao
 
- 1.11 o que é o dockerfile?
+ 1.11 o que é o Dockerfile?
  é um arquivo de configuracao 
 
  1.12 como se escreve o nome do arquivo Dockerfile?
@@ -111,7 +111,6 @@ ele é um ambiente isolado, parecido com uma vm
 tem um start e stop 
 ele é considerado uma processo que roda dentro de uma maquina
 
-
 3.1 o que faz o --rm no comando docker run?
 Quando o container parar, ele é removido automaticamente.
 Evita que o Docker fique cheio de contêineres “mortos”.
@@ -130,7 +129,7 @@ nao, apenas volumes do container (persistente) isso so é possivel com o docker 
 WORKDIR, a partir de qual diretorio ele começa 
 
 3.6 explique esse comando docker run --rm -it -v $(pwd):/app -w /app node:alpine node app.js
-remove o container quando parta, executa interativamente, monta o volume no pwd do host para a pasta /app e define o working directory como /app depois temos a imagem que é respectivo ao FROM quando buildamos uma img no Dockerfile e comando no final é respectivo ao CMD que é node app.js 
+remove o container quando ele para, executa interativamente, monta o volume no pwd do host para a pasta /app e define o working directory como /app depois temos a imagem que é respectivo ao FROM quando buildamos uma img no Dockerfile e comando no final é respectivo ao CMD que é node app.js 
 
 3.7 o que o ADD/COPY faz no Dockerfile?
 ele envia todos os arquivos para imagem
@@ -148,7 +147,7 @@ sao as config do ambiente, o que precisa no linux para rodar, dependencias de va
 3.7 Qual a diferença do ADD para o COPY?
 o ADD eu utilizo quando eu preciso fazer a copia de um arquivo da rede (fazer um download) ou quando tenho um arquivo compactado no host ele le e faz um unpack
 
-3.8 quando expomos uma porta de uma container e trasformamos nosso host em servidor eu consigo acessar esse container de outra maquina?
+3.8 quando expomos uma porta de uma container e transformamos nosso host em servidor eu consigo acessar esse container de outra maquina?
 não, pq a maquina host nao expos a porta do container, precisamos expor ela para que consigamos acessar de uma outra maquina
 
 3.9 o que faz o comando o CMD?
@@ -179,8 +178,7 @@ mapear para a porta do container ex: docker run -p 3000:3000
 construindo layers
 
 4.2 Cada linha do Dockerfile é uma layer?
-sistema
-
+sim
 
 4.3 Como deixar o build da imagem mais perfomatico?
 como o docker armazena as layers, podemos fazer a copia do arquivo de dependencias primeiro, se o arquivo nao tiver alterações ele se manterá evitando rodar o run novamente
@@ -238,12 +236,11 @@ o start volta uma container parado, o docker run inicia/cria um container
 5.13 como remover um container?
 docker rm {container_name}
 
-
 5.14 como remover um container que esta rodando?
 docker rm -f {container_name}
 
 5.15 o que sao volumes no docker?
-é mesma analagia de ter um ssd ou hd do container
+é mesma analogia de ter um ssd ou hd do container
 
 5.16 como poder ser armazenado um volume?
 local ou em cloud

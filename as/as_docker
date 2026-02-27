@@ -1,0 +1,353 @@
+20082025
+
+1.1 o que é docker?
+
+
+1.2 quais os problemas que o docker resolve?
+
+
+1.3 como verificar a versao do docker?
+
+
+1.4 o que vai na imagem docker?
+
+
+1.5 o que é um container?
+
+
+1.6 qual o é papel do container?
+
+
+1.7 o que é docker hub (registry)?
+
+
+1.8 qual a imagem disponibilizada enxuta para linux?
+
+
+1.9 o que é o alpine?
+
+
+1.10 quando eu tenho node instalado em um container ele existe no SO fora do docker?
+
+
+1.11 o que é o Dockerfile?
+
+
+1.2 como se escreve o nome do arquivo Dockerfile?
+
+
+1.13 o Dockerfile tem extensao?
+
+
+1.14 o que passamos no arquivo Dockerfile?
+
+
+2.1 o que identifica o comando FROM no Dockerfile?
+
+
+2.2 o que faz o comando COPY?
+
+
+2.3 faça a copia do diretorio raiz para a pasta /app do container
+
+
+2.4 O que faz o CMD no Dockerfile?
+
+
+2.5 faça rodar uma aplicação node no Dockerfile?
+
+
+2.6  o que é WORKDIR?
+
+
+2.7 como construir uma imagem docker?
+
+
+2.8 o que faz o -t no docker build?
+
+2.9 rode um comando no diretorio do Dockerfile para construir uma imagem
+
+
+2.9.1 para construir um imagem precisamos estar no diretorio do Dockerfile?
+
+2.10 como ver quais imagens eu tenho?
+
+
+2.11 como fazer uma imagem virar uma container?
+
+
+2.12 criei uma imagem com: 
+FROM node:alpine
+COPY . /app
+WORKDIR /app
+CMD node app.js           
+
+e depois fiz um docker run pelo nome da imagem, dentro do app.js tem console.log('hello docker'), porque o Hello docker so aparece uma vez? quando faço o start do container não aparece?
+
+
+2.13 como fazer o docker start se tornar interativo?
+
+
+2.14 como mostrar os logs de um container?
+
+
+2.15 o que é uma docker image?
+
+
+2.16 qual a função de um container?
+
+
+
+3.1 o que faz o --rm no comando docker run?
+
+
+3.2 como fazemos para nao ficarmos com container mortos quando eles param?
+
+
+3.3 o que é -it do comando docker run?
+
+
+3.4 da para montar volumes no Dockerfile com host?
+
+
+3.5 o que é o -w do docker run?
+
+
+3.6 explique esse comando docker run --rm -it -v $(pwd):/app -w /app node:alpine node app.js
+
+
+
+3.7 o que o ADD/COPY faz no Dockerfile?
+
+
+3.8 o que o RUN faz no Dockerfile?
+
+
+3.9 o que o ENV faz no Dockerfile?
+
+
+3.10 o que é o EXPOSE?
+
+
+3.7 Qual a diferença do ADD para o COPY?
+
+
+3.8 quando expomos uma porta de uma container e transformamos nosso host em servidor eu consigo acessar esse container de outra maquina?
+
+
+3.9 o que faz o comando o CMD?
+
+
+3.10 qual o formato do comando CMD?
+
+
+
+3.11 qual a diferença do run e cmd?
+
+
+3.12 quando nao especificamos uma USER no Dockerfile qual o usuario é utilizado no container
+
+
+3.13 qual o problema quando executamos sem especificar um USER no Dockerfile?
+
+
+3.14 como o Dockerfile executa, em qual sequencia?
+
+
+3.15 como adicionar um usuario no Dockerfile?
+
+
+3.16 quando deixamos uma porta exposta no container o que temos que fazer com a porta do host?
+
+
+4.1 quando o docker roda um Dockerfile ele otimiza como para ter melhor perfomance?
+
+
+
+4.2 Cada linha do Dockerfile é uma layer?
+
+
+4.3 Como deixar o build da imagem mais perfomatico?
+
+
+4.4 como colocar uma versao na img docker?
+
+ 
+4.5 como remover uma imagem?
+
+
+4.6 como tagear uma imagem existente?
+
+
+4.7 como transferir uma image pela rede?
+
+
+5.1 como iniciar um container?
+
+
+5.2 como remover uma imagem que nao esta usando?
+
+
+5.3 como ver os processos de container no docker?
+
+
+5.4 como executar ou fazer o start de um container em 2 plano?
+
+
+5.5 como adicionar uma nome no container no start dele?
+
+
+5.6 como ver os logs do container?
+
+
+5.7 como ver as ultimas linhas de log do container?
+
+
+5.8 como executar comandos dentro do container?
+
+
+5.9 o que faz o comando exec do docker?
+
+
+5.10 qual comando para parar o container?
+
+
+5.11 como fazer o container voltar depois de parado?
+
+
+5.12 qual a diferença do docker run e docker start?
+
+
+5.13 como remover um container?
+
+
+5.14 como remover um container que esta rodando?
+
+
+5.15 o que sao volumes no docker?
+
+
+5.16 como poder ser armazenado um volume?
+
+
+5.17 como criar um volume?
+
+
+5.18 como verificar o que tem dentro do volume?
+
+
+5.19 como associar um volume ao um container?
+
+
+5.20 execute um comando dentro do container note(allspark) interativamente e abra o sh
+
+
+5.21 como copiar um arquivo do container para o host?
+
+
+5.22 qual a ordem da copia de arquivos no docker? origem/destino ou destino/origem?
+
+
+5.23 o que é o docker compose?
+
+
+6.1 o que é yaml?
+
+
+6.2 qual a definicao do yaml?
+
+
+6.3 onde é mais utilizado o yaml?
+
+
+6.4 qual é a forma de organizacao do yaml?
+
+
+6.5 qual a primeira coisa que o docker compose verifica?
+
+
+6.6 como sao definidos os containers no docker compose?
+
+
+6.7 como faço para build a img no docker compose?
+
+
+6.8 construa 2 containers no docker compose com frontend e backend onde o Dockerfiles respectivos estao na pasta frontend e backend
+
+
+
+6.9 construa 3 containers no docker compose com frontend, backend e db onde o Dockerfiles respectivos estao na pasta frontend, backend e o db utiliza a image mongo
+
+
+    
+6.10 construa 3 containers no docker compose com frontend, backend e db onde o Dockerfiles respectivos estao na pasta frontend, backend e o db utiliza a image mongo e alem de tudo faça o mapeamento das portas e crie um volume para o db e as dependecias de cada container
+
+
+6.11 como os containers do docker se conversam?
+
+
+6.12 o que o docker tem para fazer um ping entre os containers?
+
+
+6.13 como ver os logs do docker compose??
+
+
+
+6.14 quando temos um container python e queremos iniciar um servidor dentro desse container na porta 127.0.0.1:8000, com o host mapeado 8000:8000 no docker-compose, pq nao conseguimos visualizar essa aplicacao do host na porta 8000?
+
+
+
+
+Diferença prática entre localhost, 127.0.0.1 e 0.0.0.0
+
+127.0.0.1 ou localhost
+
+Significa loopback (a própria máquina/processo).
+
+Se o servidor dentro do container sobe em 127.0.0.1, ele só escuta dentro do container.
+
+Do ponto de vista do host (seu PC), o container fica inacessível, mesmo com ports: "8000:8000".
+
+→ Isso foi o que aconteceu com você.
+
+0.0.0.0
+
+Significa todas as interfaces de rede disponíveis.
+
+No Docker, isso inclui a interface que é exposta para o host.
+
+Se você rodar em 0.0.0.0, o ports funciona e você acessa pelo http://localhost:8000
+ do seu PC.
+
+→ Isso é o que você precisa.
+
+localhost fora do container (no seu PC)
+
+Quando você digita http://localhost:8000 no navegador, o Docker redireciona essa porta para dentro do container, mas só se o processo dentro do container estiver ouvindo em 0.0.0.0.
+
+
+
+STDIN (Standard Input) → entrada padrão
+
+É de onde o programa lê dados.
+
+Por padrão, vem do teclado, mas pode ser redirecionado de arquivos ou de outro programa.
+
+STDOUT (Standard Output) → saída padrão
+
+Para onde o programa manda sua saída normal.
+
+Por padrão, vai para a tela/console.
+
+STDERR (Standard Error) → saída de erros
+
+Canal separado para mensagens de erro.
+
+Também vai para a tela por padrão, mas pode ser redirecionado separadamente.
+
+
+echo "Diego" | grep "D"
+
+echo "Diego" escreve no STDOUT.
+O | (pipe) pega esse STDOUT e envia como STDIN para o grep.
+O grep lê do STDIN e imprime o resultado no STDOUT

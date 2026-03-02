@@ -13,7 +13,7 @@ uma aplicacao que funciona na maquina local e nao funciona no servidor, por cont
  pedaço do os, ambiente (python, node), files, libraries, variables. é uma copia perfeita do ambiente onde rodamos uma aplicacao (todas as dependencia que ela precisa)
 
  1.5 o que é um container?
- é um processo, onde fica a imagem 
+ é um processo, onde fica a imagem e um ambiente isolado onde contem a aplicacao
 
  1.6 qual o é papel do container?
  onde na minha maquina (cliente) tenho todas as dependecias e vou colocar em server onde tem o docker, apenas transfiro o container, basicamente transferir o ambiente de dev para prod.
